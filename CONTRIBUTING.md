@@ -5,9 +5,16 @@
 `document_type`은 `case`, `guide`, `lab`, `research` 중 문서의 수명주기에
 맞게 선택하지만 물리 폴더에는 사용하지 않습니다.
 
-문서 제목과 절 제목은 항목 이름이 아니라 **본문의 핵심 내용**을 요약합니다.
-[제목 작성 기준](docs/contributing/index.md#content-first-headings)에 따라
-제목만 읽어도 요지와 논리 흐름이 드러나는지 검토합니다.
+문서 제목과 절 제목은 문장이 아니라 **핵심 용어로 구성한 명사구**로 씁니다.
+서술 어미로 끝나는 문장 대신 대상과 측면을 드러내는 용어를 쓰고, 결론은 절의
+첫 문장에서 밝힙니다.
+[핵심 용어 제목 기준](docs/contributing/index.md#content-first-headings)에 따라
+제목만 읽어도 각 절의 대상과 측면이 드러나는지 검토합니다.
+
+topic entry는 첫 절 본문에서 **주제의 핵심 메시지와 실제 실행 결과**를 먼저
+보여 주고, 실습 절차는 자식 문서로 링크합니다. 버전 호환 같은 부수 제약은
+하단에 요약해 전담 문서로 연결합니다.
+[topic entry 구성 기준](docs/contributing/index.md#topic-entry-message)을 따릅니다.
 
 자동화가 생성하는 `Azure Daily Update`만
 `docs/azure-daily-update/YYYY-MM-DD/index.md`를 사용합니다. 상세한
@@ -25,9 +32,12 @@ taxonomy의 `legacy_tag_redirects`에서 관리합니다.
 초기화에서도 보존합니다.
 
 실행 코드, 배포 매니페스트와 결과물은
-`docs/services/<service>/<topic>/samples/<sample>/`에 `sample.yml`과
-`README.md`를 포함해 둡니다. 최상위 collection 폴더와 `samples/`에는 새
-공개 콘텐츠를 추가하지 않습니다.
+`docs/services/<service>/<topic>/samples/<sample>/`에 둡니다. `runnable`·`artifact`
+sample은 `sample.yml`과 `README.md`를 포함합니다. 컨테이너 이미지로 빌드하는 애플리케이션
+코드는 앱별 공개 코드 레포에 두고, 문서 레포의 sample에는 `kind: external`
+`sample.yml`과 릴리스 commit에 고정한 git submodule `source`만 둡니다. external sample의
+README는 코드 레포가 가지므로 문서 레포에 `README.md`를 두지 않습니다. 최상위 collection
+폴더와 `samples/`에는 새 공개 콘텐츠를 추가하지 않습니다.
 
 문서 유형, topic/child 순서, redirect, sample manifest, 메타데이터, 이미지,
 공개 안전성의 단일 기준은
